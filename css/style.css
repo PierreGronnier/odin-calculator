@@ -34,6 +34,10 @@ form input {
     pointer-events: none;
 }
 
+.screen.small-text {
+    font-size: 1.2rem; 
+}
+
 .button {
     display: grid;
     grid-template-columns: repeat(4, 1fr); 
@@ -72,7 +76,7 @@ button {
 
 .btn-equal {
     grid-column: 4; 
-    grid-row: 2;   
+    grid-row: 5;   
     background: darkgreen;
     color: #fff;
 }
@@ -82,8 +86,8 @@ button {
 }
 
 .btn-clear {
-    grid-column: 4; 
-    grid-row: 3;    
+    grid-column: 1 / span 3; 
+    grid-row: 1;    
     background: darkred;
     color: #fff;
 }
