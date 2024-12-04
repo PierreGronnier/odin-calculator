@@ -84,3 +84,39 @@ function updateEqualButton() {
         equal.disabled = true; 
     }
 }
+
+document.addEventListener("keydown", (event) => {
+    const key = event.key;
+
+    if (!isNaN(key) || key === "+" || key === "-" || key === "*" || key === "/") {
+        if (key === "+" || key === "-" || key === "*" || key === "/") {
+            if (currentInput !== "") {
+                storedValue = parseFloat(currentInput);
+            }
+            if (screen.value !== "" && currentInput === "") {
+                storedValue = parseFloat(screen.value);
+            }
+            selectedOperator = key;
+            currentInput = "";
+        } else {
+            currentInput += key;
+            updateScreen(currentInput);
+        }
+        updateEqualButton();
+    }
+
+    if (key === "Enter") {
+        event.preventDefault(); 
+        equal.click(); 
+    }
+
+    if (key === "Backspace") {
+        currentInput = currentInput.slice(0, -1);
+        updateScreen(currentInput);
+        updateEqualButton();
+    }
+
+    if (key === "Escape") {
+        clear.click(); 
+    }
+});
