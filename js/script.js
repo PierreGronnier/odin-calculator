@@ -6,6 +6,9 @@ let screen = document.querySelector('.screen');
 let buttons = document.querySelectorAll('.btn');
 let clear = document.querySelector('.btn-clear');
 let equal = document.querySelector('.btn-equal');
+let backspace = document.querySelector('.btn-backspace'); 
+let decimal = document.querySelector('.btn-dot');
+let minus = document.querySelector('.btn-minus');
 
 const add = (a, b) => a + b;
 const subtract = (a, b) => a - b;
@@ -36,6 +39,8 @@ buttons.forEach((button) => {
     button.addEventListener("click", () => {
         let buttonValue = button.getAttribute("data-num");
 
+        if (!buttonValue) return;
+
         if (buttonValue === "+" || buttonValue === "-" || buttonValue === "*" || buttonValue === "/") {
             if (currentInput !== "") {
                 storedValue = parseFloat(currentInput);
@@ -46,6 +51,9 @@ buttons.forEach((button) => {
             selectedOperator = buttonValue;
             currentInput = "";
         } else {
+            if (buttonValue === "." && currentInput.includes(".")) {
+                return; 
+            }
             currentInput += buttonValue;
             updateScreen(currentInput);
         }
@@ -59,6 +67,20 @@ clear.addEventListener("click", () => {
     selectedOperator = null;
     updateScreen("");
     updateEqualButton();
+});
+
+backspace.addEventListener("click", () => {
+    currentInput = currentInput.slice(0, -1); 
+    updateScreen(currentInput);
+    updateEqualButton();
+});
+
+minus.addEventListener("click", () => {
+    if (currentInput === "") {
+        currentInput = screen.value || "0"; 
+    }
+    currentInput = (parseFloat(currentInput) * -1).toString(); 
+    updateScreen(currentInput);
 });
 
 equal.addEventListener("click", () => {
@@ -103,6 +125,14 @@ document.addEventListener("keydown", (event) => {
             updateScreen(currentInput);
         }
         updateEqualButton();
+    }
+
+    if (key === ".") {
+        if (currentInput.includes(".")) {
+            return;
+        }
+        currentInput += key;
+        updateScreen(currentInput);
     }
 
     if (key === "Enter") {

@@ -56,21 +56,21 @@ button {
     text-align: center;
 }
 
-.btn-operator {
+.btn-operator, .btn-dot {
     background: #2a9d8f;
     color: #fff;
 }
 
-.btn-operator:hover {
+.btn-operator:hover, .btn-dot:hover {
     background: #1a6159; 
 }
 
-.btn-grey {
+.btn-grey, .btn-minus {
     background: rgb(224, 224, 224);
     color: #000;
 }
 
-.btn-grey:hover {
+.btn-grey:hover, .btn-minus:hover {
     background: #a0a0a0; 
 }
 
@@ -85,19 +85,17 @@ button {
     background: rgb(0, 75, 0); 
 }
 
-.btn-clear {
-    grid-column: 1 / span 3; 
-    grid-row: 1;    
+.btn-clear, .btn-backspace {   
     background: darkred;
     color: #fff;
 }
 
-.btn-clear:hover {
+.btn-clear:hover, .btn-backspace:hover {
     background: rgb(92, 1, 1); 
 }
 
 .btn-zero {
-    grid-column: 1 / span 3; 
+    grid-column: 1 / span 2; 
     grid-row: 5; 
     background: rgb(224, 224, 224);
     color: #000;
